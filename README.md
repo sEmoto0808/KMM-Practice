@@ -1,6 +1,9 @@
 # KMM-Practice
 KMMを触ってみる
 
+# KMMの基礎
+https://kotlinlang.org/docs/multiplatform-mobile-understand-project-structure.html#root-project
+
 # iOSビルドエラー
 M2 MacでiOSのビルドをしたときに下記のエラーが発生
 ```
