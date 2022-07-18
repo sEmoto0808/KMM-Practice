@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared"))
+    implementation(project(":shared")) // NOTE: To access the shared module code
     implementation("com.google.android.material:material:1.6.1")
     implementation("androidx.appcompat:appcompat:1.4.2")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
