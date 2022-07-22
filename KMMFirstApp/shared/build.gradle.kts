@@ -17,13 +17,30 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-core:1.4.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+                implementation("io.ktor:ktor-client-serialization:1.4.1")
+
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1-native-mt") {
+                    version {
+                        strictly("1.4.1-native-mt")
+                    }
+                }
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-android:1.4.1")
+                implementation("com.google.android.material:material:1.6.1")
+            }
+        }
         val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -33,6 +50,10 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+
+            dependencies {
+                implementation("io.ktor:ktor-client-ios:1.4.1")
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
