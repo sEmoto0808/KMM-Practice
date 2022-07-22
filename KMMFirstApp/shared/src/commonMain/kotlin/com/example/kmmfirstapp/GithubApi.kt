@@ -23,8 +23,8 @@ class GithubApi {
     fun fetchRepos(callback: (List<Repository>) -> Unit) {
         GlobalScope.apply {
             launch(apiClient.dispatcher) {
-                val result = apiClient.client.get<List<Repository>>("$BASE_URL/users/sEmoto0808/repos")
-                callback(result)
+//                val result = apiClient.client.get<List<Repository>>("$BASE_URL/users/sEmoto0808/repos")
+//                callback(result)
             }
         }
     }
