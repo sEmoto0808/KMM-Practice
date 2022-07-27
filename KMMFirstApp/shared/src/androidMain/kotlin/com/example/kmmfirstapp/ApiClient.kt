@@ -1,14 +1,14 @@
 package com.example.kmmfirstapp
 
 import io.ktor.client.*
-import io.ktor.client.engine.android.*
+import io.ktor.client.engine.okhttp.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 actual class ApiClient actual constructor() {
-    actual val client: HttpClient = HttpClient(Android) {
+    actual val client: HttpClient = HttpClient(OkHttp) {
         install(ContentNegotiation) {
             json(json = kotlinx.serialization.json.Json {
                 isLenient = false
