@@ -3,18 +3,27 @@ import shared
 
 struct ContentView: View {
 	let greeting = Greeting()
+	let githubApi = GithubApi()
 
     @State var greet = "Loading"
+    @State var repos: [Repository] = []
 
 	var body: some View {
-		Text(greet)
-            .onAppear(perform: load)
+        VStack {
+            Text(greet)
+
+            List(repos, id: \.self) { repo in
+                Text(repo.name)
+            }
+        }
+        .onAppear(perform: load)
 	}
 
     func load() {
-        greeting.getHtml { result, error in
+        githubApi.fetchRepos { result, error in
             if let result = result {
-                greet = result
+                repos = result
+                greet = "Success"
             } else if let error = error {
                 greet = "Error: \(error)"
             }

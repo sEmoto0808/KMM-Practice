@@ -5,12 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.kmmfirstapp.Greeting
 import android.widget.TextView
+import com.example.kmmfirstapp.GithubApi
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-
-fun greet(): String {
-    return Greeting().greeting()
-}
 
 class MainActivity : AppCompatActivity() {
     private val mainScope = MainScope()
@@ -21,13 +18,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val tv: TextView = findViewById(R.id.text_view)
-//        tv.text = greet()
 
         mainScope.launch {
             kotlin.runCatching {
-                Greeting().getHtml()
+                GithubApi().fetchRepos()
             }.onSuccess {
-                tv.text = it
+                tv.text = it.joinToString { it.toString() }
             }.onFailure {
                 tv.text = "Error: ${it.localizedMessage}"
             }
